@@ -1,0 +1,56 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="640" rx="32" fill="#F5EFE3"/>
+  <rect x="34" y="34" width="1212" height="572" rx="28" fill="url(#bg)"/>
+  <circle cx="1080" cy="148" r="128" fill="#DCE8C8" fill-opacity="0.62"/>
+  <circle cx="1140" cy="470" r="168" fill="#F3D7A3" fill-opacity="0.55"/>
+  <circle cx="176" cy="516" r="112" fill="#D4E5F7" fill-opacity="0.7"/>
+  <rect x="92" y="88" width="182" height="42" rx="21" fill="#183A37"/>
+  <text x="183" y="115" text-anchor="middle" fill="#FFF9F0" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">EBR Primaria</text>
+  <text x="92" y="205" fill="#183A37" font-family="Georgia, Times New Roman, serif" font-size="62" font-weight="700">Generador de Unidades</text>
+  <text x="92" y="278" fill="#183A37" font-family="Georgia, Times New Roman, serif" font-size="62" font-weight="700">y Sesiones</text>
+  <text x="92" y="334" fill="#35524A" font-family="Segoe UI, Arial, sans-serif" font-size="28">Convierte una programacion anual integrada en unidades</text>
+  <text x="92" y="372" fill="#35524A" font-family="Segoe UI, Arial, sans-serif" font-size="28">y sesiones por area, listas para revisar y descargar.</text>
+  <rect x="92" y="434" width="109" height="112" rx="22" fill="#FFF9F0"/>
+  <rect x="224" y="434" width="109" height="112" rx="22" fill="#FFF9F0"/>
+  <rect x="356" y="434" width="109" height="112" rx="22" fill="#FFF9F0"/>
+  <rect x="493" y="484" width="88" height="12" rx="6" fill="#D6C7A8"/>
+  <rect x="91" y="484" width="21" height="12" rx="6" fill="#183A37"/>
+  <rect x="223" y="484" width="21" height="12" rx="6" fill="#183A37"/>
+  <rect x="355" y="484" width="21" height="12" rx="6" fill="#183A37"/>
+  <text x="146" y="476" text-anchor="middle" fill="#183A37" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">1</text>
+  <text x="278" y="476" text-anchor="middle" fill="#183A37" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">2</text>
+  <text x="410" y="476" text-anchor="middle" fill="#183A37" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">3</text>
+  <text x="146" y="519" text-anchor="middle" fill="#35524A" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">Programacion</text>
+  <text x="278" y="519" text-anchor="middle" fill="#35524A" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">Unidades</text>
+  <text x="410" y="519" text-anchor="middle" fill="#35524A" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">Sesiones</text>
+  <g filter="url(#shadow)">
+    <rect x="718" y="110" width="434" height="420" rx="28" fill="#FFF9F0"/>
+  </g>
+  <rect x="748" y="144" width="136" height="18" rx="9" fill="#D4E5F7"/>
+  <rect x="748" y="178" width="248" height="18" rx="9" fill="#E6DDCB"/>
+  <rect x="748" y="230" width="374" height="64" rx="18" fill="#F5EFE3"/>
+  <rect x="770" y="250" width="112" height="12" rx="6" fill="#183A37"/>
+  <rect x="770" y="271" width="202" height="10" rx="5" fill="#8FA39A"/>
+  <rect x="748" y="316" width="374" height="64" rx="18" fill="#F5EFE3"/>
+  <rect x="770" y="336" width="134" height="12" rx="6" fill="#183A37"/>
+  <rect x="770" y="357" width="186" height="10" rx="5" fill="#8FA39A"/>
+  <rect x="748" y="402" width="176" height="44" rx="14" fill="#183A37"/>
+  <text x="836" y="430" text-anchor="middle" fill="#FFF9F0" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Generar documento</text>
+  <rect x="946" y="402" width="176" height="44" rx="14" fill="#DCE8C8"/>
+  <text x="1034" y="430" text-anchor="middle" fill="#35524A" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Descargar ZIP</text>
+  <defs>
+    <linearGradient id="bg" x1="34" y1="34" x2="1246" y2="606" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF9F0"/>
+      <stop offset="1" stop-color="#F3E7CF"/>
+    </linearGradient>
+    <filter id="shadow" x="690" y="90" width="490" height="476" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="8"/>
+      <feGaussianBlur stdDeviation="14"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.131 0 0 0 0 0.203 0 0 0 0 0.194 0 0 0 0.18 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+  </defs>
+</svg>
