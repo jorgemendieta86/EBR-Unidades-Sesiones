@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Materiales EBR | Primaria V2.5</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+  <div class="modal-backdrop startup-backdrop" id="startupModal" role="dialog" aria-modal="true" aria-labelledby="startupTitle">
+    <div class="startup-modal">
+      <p class="eyebrow">Bienvenido</p>
+      <h2 id="startupTitle">¿Cómo deseas comenzar?</h2>
+      <p class="startup-intro">Puedes continuar con la última programación guardada en este navegador o iniciar con un documento nuevo.</p>
+
+      <div class="startup-options">
+        <article class="startup-option" id="continueProjectCard">
+          <span class="startup-number">1</span>
+          <div>
+            <h3>Continuar con la última programación</h3>
+            <p id="lastProjectSummary">No se encontró una programación anterior.</p>
+            <div class="last-project-data" id="lastProjectData"></div>
+          </div>
+          <button class="btn primary large" id="btnContinueLast" type="button">Continuar</button>
+        </article>
+
+        <article class="startup-option">
+          <span class="startup-number">2</span>
+          <div>
+            <h3>Trabajar con un nuevo documento</h3>
+            <p>Elimina los datos guardados del proyecto anterior y deja la plataforma lista para cargar una nueva programación.</p>
+          </div>
+          <button class="btn secondary large" id="btnStartNew" type="button">Nuevo documento</button>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">EBR</div>
+        <div>
+          <strong>Materiales EBR <small class="version-label">V2.5</small></strong>
+          <span>Primaria · Programación integrada → unidades integradas → sesiones por área</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="btn ghost" id="btnSaveProject" type="button">Guardar proyecto</button>
+        <button class="btn ghost danger-soft" id="btnResetProject" type="button">Nuevo proyecto</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero compact">
+        <div>
+          <p class="eyebrow">Flujo simplificado para Primaria</p>
+          <h1>De una programación anual integrada a unidades integradas y sesiones por área.</h1>
+          <p>Sube la programación anual integrada. La plataforma identifica las experiencias planificadas, genera cada unidad con todas las áreas que le corresponden y, después, organiza las sesiones por área curricular.</p>
+        </div>
+        <div class="hero-mini-flow" aria-label="Flujo de trabajo">
+          <div class="mini-node active" data-step-indicator="1"><span>1</span><b>Programación</b></div>
+          <div class="mini-line"></div>
+          <div class="mini-node" data-step-indicator="2"><span>2</span><b>Unidades</b></div>
+          <div class="mini-line"></div>
+          <div class="mini-node" data-step-indicator="3"><span>3</span><b>Sesiones</b></div>
+        </div>
+      </section>
+
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <nav class="step-tabs" aria-label="Etapas del trabajo">
+        <button class="step-tab active" data-step="1" type="button"><span>1</span>Programación</button>
+        <button class="step-tab" data-step="2" type="button" disabled><span>2</span>Unidades</button>
+        <button class="step-tab" data-step="3" type="button" disabled><span>3</span>Sesiones</button>
+      </nav>
+
+      <section class="step-panel active" id="step-1">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Paso 1</p>
+            <h2>Carga y revisa la programación anual integrada</h2>
+            <p>La programación completa será el documento madre. La plataforma identifica las experiencias, áreas y competencias planificadas para generar unidades integradas y, posteriormente, sus sesiones organizadas por área.</p>
+          </div>
+        </div>
+
+        <div class="two-col upload-layout">
+          <article class="panel upload-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Documento fuente</p>
+                <h3>Subir programación integrada</h3>
+              </div>
+              <span class="badge required">Requerido</span>
+            </div>
+
+            <label class="drop-zone" id="programDropZone">
+              <input id="programFile" type="file" accept=".docx,.pdf,.txt,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,text/plain" hidden>
+              <span class="drop-icon">↑</span>
+              <strong>Selecciona o arrastra tu programación</strong>
+              <small>Word (.docx), PDF o TXT</small>
+            </label>
+            <div id="programFileState" class="file-state">Aún no has seleccionado un archivo.</div>
+
+            <details class="fallback-details">
+              <summary>Si el archivo no puede leerse, pegar el texto</summary>
+              <textarea id="programTextFallback" rows="9" placeholder="Pega aquí el contenido de la programación anual."></textarea>
+            </details>
+
+            <div class="panel-actions stacked-mobile">
+              <button class="btn primary large" id="btnAnalyzeProgram" type="button">Analizar programación</button>
+            </div>
+            <p class="microcopy">La programación se conserva como fuente integrada. Las unidades se generan con todas las áreas planificadas y las sesiones se organizan posteriormente por área.</p>
+          </article>
+
+          <article class="panel status-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Estado del proyecto</p>
+                <h3>Qué falta para continuar</h3>
+              </div>
+            </div>
+            <div class="check-list" id="projectChecks"></div>
+          </article>
+        </div>
+
+        <article class="panel hidden" id="analysisPanel">
+          <div class="panel-head split">
+            <div>
+              <p class="eyebrow">Revisión</p>
+              <h3>Información encontrada en la programación integrada</h3>
+              <p>Revisa los datos principales. Esta programación será el documento madre de todas las unidades y sesiones que se generen.</p>
+            </div>
+            <span class="badge draft" id="analysisBadge">Por confirmar</span>
+          </div>
+
+          <div class="form-grid four summary-grid">
+            <label>Institución educativa<input id="detectedSchool" type="text"></label>
+            <label>Docente<input id="detectedTeacher" type="text"></label>
+            <label>Año escolar<input id="detectedYear" type="number" min="2024" max="2100"></label>
+            <label>Organización del año<select id="detectedPeriodType"><option value="">No identificada</option><option value="Trimestres">Trimestres</option><option value="Bimestres">Bimestres</option></select></label>
+          </div>
+
+          <div class="review-strip">
+            <div>
+              <span>Grados / ciclos detectados</span>
+              <div id="detectedGrades" class="chip-wrap"></div>
+            </div>
+            <div>
+              <span>Áreas encontradas</span>
+              <div id="detectedAreas" class="chip-wrap"></div>
+            </div>
+          </div>
+
+          <div class="units-review-head">
+            <div>
+              <p class="eyebrow">Experiencias detectadas en la programación</p>
+              <h4><span id="detectedUnitCount">0</span> experiencias / unidades anuales</h4>
+            </div>
+            <button class="btn secondary" id="btnAddDetectedUnit" type="button">Agregar unidad</button>
+          </div>
+          <div id="detectedUnitsEditor" class="detected-units-editor"></div>
+
+          <div class="validation-note" id="programWarnings"></div>
+
+          <div class="panel-actions right">
+            <button class="btn primary large" id="btnConfirmProgram" type="button">Confirmar programación</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="step-panel" id="step-2">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Paso 2</p>
+            <h2>Genera las unidades integradas</h2>
+            <p>Cada experiencia se convierte en una unidad integrada. La lista muestra el número y la fecha o periodo de trabajo indicado en la programación, para que puedas generar y descargar una unidad específica o todas las unidades en un ZIP.</p>
+          </div>
+          <div class="inline-actions">
+            <button class="btn primary" id="btnGenerateAllUnits" type="button">Generar todas las unidades</button>
+            <button class="btn secondary" id="btnDownloadUnitsZip" type="button" disabled>Descargar todas las unidades .ZIP</button>
+          </div>
+        </div>
+
+        <div class="context-banner" id="unitsContextBanner"></div>
+        <div id="unitsList" class="doc-card-list"></div>
+      </section>
+
+      <section class="step-panel" id="step-3">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Paso 3</p>
+            <h2>Genera las sesiones por área a partir de las unidades</h2>
+            <p>Las sesiones nacen de las unidades integradas ya generadas. Puedes ver y generar las sesiones de una sola área o de todas las áreas, respetando la secuencia definida en cada unidad.</p>
+          </div>
+          <div class="inline-actions">
+            <button class="btn primary" id="btnGenerateAllSessions" type="button">Generar todas las sesiones</button>
+            <button class="btn secondary" id="btnDownloadSessionsZip" type="button" disabled>Descargar sesiones .ZIP</button>
+          </div>
+        </div>
+
+        <article class="panel student-panel">
+          <div class="panel-head split">
+            <div>
+              <p class="eyebrow">Lista de estudiantes</p>
+              <h3>Importar estudiantes para los instrumentos de evaluación</h3>
+              <p>La lista se incorporará automáticamente en la lista de cotejo o en el instrumento con registro nominal que utilicen las sesiones generadas.</p>
+            </div>
+            <span class="badge draft" id="studentsBadge">Sin lista</span>
+          </div>
+          <div class="student-import-simple">
+            <label class="student-file-box">
+              <span>Archivo de estudiantes</span>
+              <input id="studentsFile" type="file" accept=".xlsx,.csv,.docx,.txt,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain">
+              <small>Selecciona el archivo. Los nombres aparecerán automáticamente en “Revisar o corregir nombres”.</small>
+            </label>
+          </div>
+          <details class="students-review" id="studentsReview">
+            <summary>Revisar o corregir nombres</summary>
+            <textarea id="studentsEditor" rows="8" placeholder="Un estudiante por línea"></textarea>
+            <div class="panel-actions">
+              <button class="btn secondary" id="btnSaveStudents" type="button">Guardar lista</button>
+              <button class="btn ghost danger-soft" id="btnClearStudents" type="button">Limpiar lista</button>
+            </div>
+          </details>
+        </article>
+
+        <div class="session-filter-bar">
+          <label for="sessionAreaFilter">Área de sesiones
+            <select id="sessionAreaFilter"><option value="all">Todas las áreas</option></select>
+          </label>
+          <small>El filtro solo organiza las sesiones. No modifica las unidades integradas.</small>
+        </div>
+
+        <div class="context-banner" id="sessionsContextBanner"></div>
+        <div id="sessionsList" class="sessions-groups"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="previewModal" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+    <div class="preview-modal">
+      <div class="preview-toolbar">
+        <div>
+          <p class="eyebrow">Vista previa</p>
+          <h3 id="previewTitle">Documento</h3>
+        </div>
+        <div class="inline-actions">
+          <button class="btn secondary" id="btnPreviewDownload" type="button">Descargar Word</button>
+          <button class="btn secondary" id="btnPreviewPrint" type="button">Imprimir / PDF</button>
+          <button class="btn ghost" id="btnClosePreview" type="button">Cerrar</button>
+        </div>
+      </div>
+      <div class="preview-stage" id="previewStage"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="assets/curriculum.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
